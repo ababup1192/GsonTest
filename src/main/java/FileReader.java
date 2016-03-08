@@ -11,7 +11,7 @@ public class FileReader {
     /**
      * ファイルを読み込んで内容をStringにして返す。
      *
-     * @param resourceName resourcesディレクトリ化のファイル名(ディレクトリの中にあるときはスラッシュで区切る)
+     * @param resourceName resourcesディレクトリのファイル名(ディレクトリの中にあるときはスラッシュで区切る)
      * @return ファイルの内容
      */
     public static Optional<String> fileRead(String resourceName) {
