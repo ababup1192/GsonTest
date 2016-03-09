@@ -22,5 +22,4 @@ public class ObjectJson {
                     Objects.equals(this.flag, targetJson.flag);
         }
     }
-
 }

@@ -11,8 +11,8 @@ public class JsonReader {
     /**
      * Jsonが記述されているファイルを読み込んで、Javaオブジェクトに変換する
      *
-     * @param resourceName リソース名
-     * @param entityClass  resourcesディレクトリのファイル名(ディレクトリの中にあるときはスラッシュで区切る)
+     * @param resourceName resourcesディレクトリのファイル名(ディレクトリの中にあるときはスラッシュで区切る)
+     * @param entityClass  変換される対象のオブジェクトのクラス
      * @param <T>          Javaオブジェクトの型
      * @return Optional[T]
      */
@@ -23,17 +23,38 @@ public class JsonReader {
         }).orElse(Optional.empty());
     }
 
+    /**
+     * Jsonが記述されているファイルを読み込んで、Java Listオブジェクトに変換する
+     *
+     * @param resourceName resourcesディレクトリのファイル名(ディレクトリの中にあるときはスラッシュで区切る)
+     * @param entityClass  変換される対象のオブジェクトのクラス
+     * @param <T>          Javaオブジェクトの型
+     * @return List[T]
+     */
     public static <T> List<T> readJsonObjects(String resourceName, Class<T> entityClass) {
         return FileReader.fileRead(resourceName).map(json ->
                 fromJsonList(json, entityClass))
                 .orElse(Collections.emptyList());
     }
 
+    /**
+     * Json文字列から Java Listオブジェクトに変換する
+     *
+     * @param json        Json文字列
+     * @param entityClass 変換される対象のオブジェクトのクラス
+     * @param <T>         Javaオブジェクトの型
+     * @return List[T]
+     */
     private static <T> List<T> fromJsonList(String json, Class<T> entityClass) {
         Gson gson = new Gson();
         return gson.fromJson(json, new ListOfSomething<>(entityClass));
     }
 
+    /**
+     * Listのジェネリクス情報を保有するためのラッパー
+     *
+     * @param <X> Listの型
+     */
     private static class ListOfSomething<X> implements ParameterizedType {
 
         private Class<?> wrapped;
