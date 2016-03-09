@@ -1,0 +1,17 @@
+[
+  {
+    "word": "word",
+    "num": 123,
+    "flag": true
+  },
+  {
+    "word": "word2",
+    "num": 456,
+    "flag": false
+  },
+  {
+    "word": "word3",
+    "num": 789,
+    "flag": true
+  }
+]
